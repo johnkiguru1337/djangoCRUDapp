@@ -1,7 +1,7 @@
 # Simple Project Dashboard build in Django 2.1
 This is Simple Project Dashboard application build using django that I have created for less than 24 hours. 
 
-<img src="project-dashboard.png">
+<img src="Screenshot at 2021-12-06 14-10-53.png">
 
 If you interest to run this project, you can follow this instructions
 <ol>
