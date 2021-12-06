@@ -1,0 +1,11 @@
+{% extends 'task/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h1>Welcome to Simple Project Dashboard Application</h1>
+    <a class="btn btn-primary mb-2" href="{% url 'task_list' %}" role="button">Action on Lecturer</a>
+    <a class="btn btn-primary mb-2" href="{% url 'lecturer' %}" role="button">Find Lecturer</a>
+
+{% endblock %}
+
+

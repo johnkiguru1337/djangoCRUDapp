@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>Bar Chart</title>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?2.1.3"></script> 
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.layout.js?2.1.3"></script> 
+
+
+   <style type="text/css">
+
+body {
+ font: 10px sans-serif;
+}
+
+   </style>
+ </head>
+ <body>
+
+     <p style="font-size:12;">Click on a bar</p>
+
+     <div id="chart"></div>
+
+    <script type="text/javascript">
+        
+    //setup svg canvas
+    var svg = d3.select("#chart")
+        .append("svg:svg")
+            //.attr("width", "1000")
+            //.attr("height", "700")
+            .attr("width", "900")
+            .attr("height", "550")
+            .attr("viewBox", "0 0 1000 700")
+            .attr("preserveAspectRatio", "xMinYMin meet")
+            .attr("id", "charts");
+            //.on("click", clickypie)
+    var bgrect = svg.append("svg:rect")
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr("stroke", "#000")
+        .attr("stroke-width", 1)
+        .attr("fill", "none");
+
+
+
+    function bakebar(classname, data, xp, yp, w, h)
+    { 
+        //color could be made a parameter
+        var color = d3.scale.category10()
+
+        x = d3.scale.ordinal()
+            .domain(d3.range(data.length ))
+            .rangeBands([ 0, w ], .2)
+
+        var data_max = d3.max(data, function(d)
+        {
+            return d.pop
+        })
+        console.log(data_max)
+
+        y = d3.scale.linear()
+            .domain([ 0, data_max ])
+            .range([ 0, h ])
+
+
+        var bar = d3.select("#charts")
+            .append("svg:g")
+                .attr("class", classname);
+
+        var bars = bar.selectAll("g.bar")
+           .data(data)
+         .enter().append("svg:g")
+           .attr("class", "bar")
+           .attr("transform", "translate(" + xp + "," + yp + ")");
+
+
+        console.log("BARS");
+        var paths = bars.append("svg:rect")
+            .attr("fill", function(d, i) { return color(i); })
+            .attr("fill-opacity", .6)
+            .attr("x", function(d,i) { return x(i) })
+            .attr("y", function(d,i) { return h - y(d.pop) })
+            .attr("width", function(d,i) { return x.rangeBand() })
+            .attr("height", function(d,i) { return y(d.pop) })
+            .on("mouseover", function(d, i) 
+            {
+                d3.select(this)
+                    .attr("fill-opacity", 1);
+            })
+            .on("mouseout", function(d, i) 
+            {
+                d3.select(this)
+                    .attr("fill-opacity", .6);
+            });
+
+
+    }
+
+
+    var data = [
+        {"key":"FL", "pop":10000 },
+        {"key":"CA", "pop":20000 },
+        {"key":"NY", "pop":30000 },
+        {"key":"NC", "pop":40000 },
+        {"key":"SC", "pop":50000 },
+        {"key":"AZ", "pop":60000 },
+        {"key":"TX", "pop":70000 }
+    ]
+
+    //Other json we want to use in the tooltips
+    var ttdata = [
+        {"key":"FL", "awesome":8},
+        {"key":"CA", "awesome":9},
+        {"key":"NY", "awesome":5},
+        {"key":"NC", "awesome":3},
+        {"key":"SC", "awesome":2},
+        {"key":"AZ", "awesome":1},
+        {"key":"TX", "awesome":7}
+    ]
+       
+    bakebar("bar1", data, 100, 100, 800, 500);
+
+   </script>
+ </body>
+</html>

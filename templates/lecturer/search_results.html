@@ -1,0 +1,18 @@
+{% extends 'task/base.html' %}
+{% block content %}
+<h1>Search Results</h1>
+<table class="table table-striped">
+  <thead class="thead-dark"><tr>
+    <th scope="col">Lecturer's Name</th>
+    <th scope="col">Courses</th>
+  </tr></thead>
+  <tbody>
+    <tr>
+      {% for lecturer in object_list %}
+          <td>{{ lecturer.instructor }}</td>
+          <td>{{ lecturer.Title }} </td>
+      {% endfor %}
+    </tr>
+  </tbody>
+</table>
+{%endblock%}
