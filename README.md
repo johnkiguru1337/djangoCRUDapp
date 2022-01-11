@@ -7,7 +7,7 @@ If you interest to run this project, you can follow this instructions
 <ol>
     <li>Clone this repository</li>
     <ul>
-        <li>git clone git@github.com:arrosid/simple-project-dashboard-django.git</li>
+        <li>git clone git@github.com:jkiguru/simple-project-dashboard-django.git</li>
         <li>cd simple-project-dashboard-django</li>
     </ul>    
     <li>Create virtual environtment and install requirements python modules</li>
